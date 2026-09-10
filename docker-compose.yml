@@ -1,4 +1,5 @@
 services:
+
   mongo:
     image: mongo:7
     restart: unless-stopped
@@ -7,23 +8,25 @@ services:
 
   backend:
     build:
-      context: ./BACKEND/BACKEND
+      context: ./BACKEND
       dockerfile: Dockerfile
     restart: unless-stopped
     ports:
       - "5000:5000"
     env_file:
-      - ./BACKEND/BACKEND/.env
+      - ./BACKEND/.env
     depends_on:
       - mongo
 
   frontend:
     build:
-      context: ./FRONTEND/FRONTEND
+      context: ./FRONTEND
       dockerfile: Dockerfile
     restart: unless-stopped
     ports:
       - "3000:3000"
+    env_file:
+      - ./FRONTEND/.env
     depends_on:
       - backend
 
@@ -33,4 +36,3 @@ volumes:
 networks:
   default:
     driver: bridge
-    
