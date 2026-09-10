@@ -19,7 +19,7 @@ services:
 
   frontend:
     build:
-      context: ./FRONTEND
+      context: ./FRONTEND/FRONTEND
       dockerfile: Dockerfile
     restart: unless-stopped
     ports:
@@ -33,3 +33,4 @@ volumes:
 networks:
   default:
     driver: bridge
+    
